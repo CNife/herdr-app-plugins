@@ -32,6 +32,20 @@
 
 ### 安装
 
+官方没有安装命令：herdr.dev/mods 的方式是把一行提示词交给你的 agent，由它读 `~/.config/herdr-app/AGENTS.md`、逐个读这个 mod 的文件后再装。仓库被 gallery 收录后，把这一行交给 agent：
+
+```text
+Read ~/.config/herdr-app/AGENTS.md, then add this mod: herdr.dev/mods/CNife/herdr-app-plugins--no-mistakes
+```
+
+收录前（或不想等）把地址换成 GitHub 仓库，同样交给 agent：
+
+```text
+Read ~/.config/herdr-app/AGENTS.md, then add the no-mistakes mod from https://github.com/CNife/herdr-app-plugins
+```
+
+下面的脚本把同一套动作（复制到 `mods/`、跑 check、不动 `keys.json`）本地化，适合你自己的机器、批量安装或没有 agent 的场合；它不读代码，只复制，所以装别人的 mod 时优先用上面的 agent 方式。
+
 ```sh
 git clone https://github.com/CNife/herdr-app-plugins.git
 cd herdr-app-plugins
@@ -42,7 +56,7 @@ cd herdr-app-plugins
 
 更新：`git pull` 后重新运行 `./install.sh`；如果提示同名目录已存在且不一致，按上面的 `FORCE=1` 处理。
 
-手动安装：
+手动安装（等价于 agent 的复制步骤）：
 
 ```sh
 cp -R no-mistakes/mods/no-mistakes ~/.config/herdr-app/mods/
