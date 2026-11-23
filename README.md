@@ -17,7 +17,7 @@
 
 ![no-mistakes](no-mistakes/preview.png)
 
-在 Herdr 里用浮窗盯住 [no-mistakes](https://github.com/kunchenguid/no-mistakes) 的流水线：左侧是 run 列表（按仓库分组，可按 Needs me / Active / All 过滤），中间是当前步骤、意图、流水线时间线和 Logs / Findings / Metrics / Rounds 四个标签页，右侧是 gate 的 findings、PR/CI 状态、run 事实和历史耗时柱状图。宽度超过 980px 时显示右侧栏，窄了就只留主区。
+在 Herdr 里用浮窗盯住 [no-mistakes](https://github.com/kunchenguid/no-mistakes) 的流水线：左侧是 run 列表（按仓库分组，可按 Needs me / Active / All 过滤），中间是当前步骤、意图、流水线时间线和 Logs / Findings / Metrics / Rounds 四个标签页，右侧是 gate 的 findings、PR/CI 状态、run 事实和历史耗时柱状图。宽度在 980px 及以上时显示右侧栏，窄了就只留主区。
 
 它是只读的：只用 `sqlite3 -readonly` 读 `~/.no-mistakes/state.sqlite` 和 `~/.no-mistakes/logs/`，不写数据库、不迁移。会改变外部状态的只有两处——点 “Open TUI” 时打开 `no-mistakes attach --run <id>`，点 PR 链接时调用系统浏览器。
 
@@ -38,7 +38,9 @@ cd herdr-app-plugins
 ./install.sh
 ```
 
-脚本把每个 `<mod>/mods/<name>/` 复制（rsync）到 `${HERDR_APP_HOME:-~/.config/herdr-app}/mods/<name>/`，排除 Herdr 自己生成的 `gpui-kit.d.ts`、`jsconfig.json` 和 `*.error`，装完逐个跑 `herdr-app check`。Herdr 在运行中会热加载，不用重启。更新时 `git pull && ./install.sh`。
+脚本把每个 `<mod>/mods/<name>/` 复制（rsync）到 `${HERDR_APP_HOME:-~/.config/herdr-app}/mods/<name>/`，排除 Herdr 自己生成的 `gpui-kit.d.ts`、`jsconfig.json` 和 `*.error`，装完逐个跑 `herdr-app check`。它不会动 `keys.json`；同名目录如果不是本脚本装的（没有 `.herdr-plugins-install` 标记）且内容与仓库不同，会先停下，确认后可用 `FORCE=1 ./install.sh` 覆盖。安装目录归仓库所有——改插件请改仓库，不要直接改 `~/.config/herdr-app/mods/no-mistakes/`。Herdr 在运行中会热加载，不用重启。
+
+更新：`git pull` 后重新运行 `./install.sh`；如果提示同名目录已存在且不一致，按上面的 `FORCE=1` 处理。
 
 手动安装：
 
