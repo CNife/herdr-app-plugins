@@ -32,6 +32,8 @@
 
 ### 安装
 
+注意：这是 **herdr-app**（桌面应用）的 mod，不是 `herdr`（TUI）的 workflow plugin——`herdr plugin install` 不适用。两者目录和格式不同：app mod 是 `~/.config/herdr-app/mods/<name>/` 下的 `mod.json` + JS，TUI plugin 是 `~/.config/herdr/plugins/` 下的 `herdr-plugin.toml`。
+
 官方没有安装命令：herdr.dev/mods 的方式是把一行提示词交给你的 agent，由它读 `~/.config/herdr-app/AGENTS.md`、逐个读这个 mod 的文件后再装。仓库被 gallery 收录后，把这一行交给 agent：
 
 ```text
