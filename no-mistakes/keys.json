@@ -1,0 +1,4 @@
+{
+  "global": { "ctrl-shift-m": "mod.open:no-mistakes" },
+  "terminal": { "ctrl-shift-m": "mod.open:no-mistakes" }
+}

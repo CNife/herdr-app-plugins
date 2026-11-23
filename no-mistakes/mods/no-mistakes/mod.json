@@ -1,0 +1,6 @@
+{
+  "place": "none",
+  "focusable": true,
+  "title": "no-mistakes",
+  "overlay": { "kind": "window", "key": "no-mistakes", "width": 1160, "height": 0.86 }
+}
